@@ -3,11 +3,10 @@
 Selamat datang di repositori **Cyber Academy** kelompok **Dormouse**.  Di sini kami akan mengerjakan dan mendokumentasikan tugas-tugas yang diberikan.
 
 ## Anggota Kelompok
-1. [Nama Anggota 1] - [Deskripsi Tugas atau Peran]
-2. [Nama Anggota 2] - [Deskripsi Tugas atau Peran]
-3. [Nama Anggota 3] - [Deskripsi Tugas atau Peran]
-4. [Nama Anggota 4] - [Deskripsi Tugas atau Peran]
-5. [Nama Anggota 5] - [Deskripsi Tugas atau Peran]
+1. Harsya Brahmantyo - [Deskripsi Tugas atau Peran]
+2. Firlana Dwi Putra - [Deskripsi Tugas atau Peran]
+3. Hanif Athalla Wiharso - [Deskripsi Tugas atau Peran]
+4. Putri Ayudhira A.S - Web Server dan PPT
 
 ## Cara Berkontribusi
 1. Fork repositori ini.
