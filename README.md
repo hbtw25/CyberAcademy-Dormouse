@@ -3,7 +3,7 @@
 Selamat datang di repositori **Cyber Academy** kelompok **Dormouse**.  Di sini kami akan mengerjakan dan mendokumentasikan tugas-tugas yang diberikan.
 
 ## Anggota Kelompok
-1. Harsya Brahmantyo - [Deskripsi Tugas atau Peran]
+1. Harsya Brahmantyo w - FTP dan PPT
 2. Firlana Dwi Putra - [Deskripsi Tugas atau Peran]
 3. Hanif Athalla Wiharso - [Deskripsi Tugas atau Peran]
 4. Putri Ayudhira A.S - Web Server dan PPT
