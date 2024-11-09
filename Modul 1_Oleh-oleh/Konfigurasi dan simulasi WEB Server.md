@@ -23,6 +23,8 @@ Agar VM dapat diakses melalui browser dari Windows, atur jaringan pada VirtualBo
 - Pada **Name**, pilih adapter jaringan yang digunakan di host OS Windows (misalnya, Wi-Fi atau Ethernet).
 
 **[Gambar Step 1: Pengaturan Network di VirtualBox]**
+![Step 1](./Assets/Web%20Server%20Step1.png)
+
 
 > **Catatan:** Pastikan VM dalam kondisi mati saat mengubah pengaturan jaringan ini. Restart VM setelahnya.
 
@@ -37,7 +39,8 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 **[Gambar Step 2: Proses Update di Terminal Ubuntu]**
-
+![Step 2 Update](./Assets/Web%20Server%20Step2%20update.png)
+![Step 2 Upgrade](./Assets/Web%20Server%20Step2%20upgrade.png)
 ---
 
 ## Langkah 3: Install Apache Web Server
@@ -49,10 +52,29 @@ sudo apt install -y apache2
 ```
 
 **[Gambar Step 3: Instalasi Apache Web Server]**
-
+![Step 3](./Assets/Web%20Server%20Step3.png)
 ---
 
-## Langkah 4: Ubah Isi File HTML
+## Langkah 4: Mengatur Firewall
+Setelah Apache terinstal, konfigurasikan firewall agar Apache dapat diakses:
+
+Jika Anda menggunakan firewall di VM, pastikan apache (untuk HTTP) diizinkan
+
+```bash
+sudo ufw allow 'Apache'
+```
+
+Jika firewall belum diaktifkan, Anda bisa mengaktifkannya dengan:
+
+```bash
+sudo ufw enable
+```
+
+**[Gambar Step 4: Konfigurasi Firewall untuk Akses HTTP]**
+![Step 4](./Assets/Web%20Server%20allow%20apache.png)
+---
+
+## Langkah 5: Ubah Isi File HTML
 
 Setelah Apache terinstal, buka direktori web server dan ubah file HTML default:
 
@@ -84,11 +106,12 @@ Gantilah isi file `index.html` dengan informasi nama kelompok dan anggota-anggot
 
 Setelah selesai, tekan `CTRL + X`, kemudian `Y`, dan tekan `Enter` untuk menyimpan perubahan.
 
-**[Gambar Step 4: Edit File HTML di Terminal]**
-
+**[Gambar Step 5: Edit File HTML di Terminal]**
+![Step 5](./Assets/Web%20Server%20Step4.png)
+![Step 5 Isi file html](./Assets/Web%20Server%20Step4%20html.png)
 ---
 
-## Langkah 5: Verifikasi Web Server
+## Langkah 6: Verifikasi Web Server
 
 Periksa apakah Apache berjalan dengan baik:
 
@@ -98,11 +121,11 @@ sudo systemctl status apache2
 
 Jika statusnya **aktif (running)**, berarti Apache Web Server sudah siap.
 
-**[Gambar Step 5: Status Layanan Apache]**
-
+**[Gambar Step 6: Status Layanan Apache]**
+![Step 6](./Assets/Web%20Server%20Step5.png)
 ---
 
-## Langkah 6: Akses Web Server dari Browser di Windows
+## Langkah 7: Akses Web Server dari Browser di Windows
 
 Untuk mengakses web server dari browser di host OS (Windows), catat alamat IP VM Ubuntu dengan perintah:
 
@@ -123,26 +146,9 @@ Catat alamat IP yang ditampilkan (biasanya yang pertama) untuk digunakan pada la
 
 3. Jika semuanya berjalan dengan baik, Anda akan melihat halaman web dengan nama kelompok dan daftar anggota.
 
-**[Gambar Step 6: Akses Web Server di Browser]**
-
----
-
-## Langkah 7: Mengatur Firewall (Opsional)
-
-Jika Anda menggunakan firewall di VM, pastikan port 80 (untuk HTTP) diizinkan:
-
-```bash
-sudo ufw allow 80/tcp
-```
-
-Jika firewall belum diaktifkan, Anda bisa mengaktifkannya dengan:
-
-```bash
-sudo ufw enable
-```
-
-**[Gambar Step 7: Konfigurasi Firewall untuk Akses HTTP]**
-
+**[Gambar Step 7: Akses Web Server di Browser]**
+![Step 7](./Assets/Web%20Server%20Step6%20ip.png)
+![Step 7 Browser](./Assets/Web%20Server%20Step6%20browser.png)
 ---
 
 ## Troubleshooting
