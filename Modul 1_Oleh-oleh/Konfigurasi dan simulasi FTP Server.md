@@ -1,135 +1,154 @@
+
 # Setup FTP Server di Ubuntu 22.04
 
 Panduan ini memberikan langkah-langkah detail untuk menginstal dan mengkonfigurasi Server FTP menggunakan `vsftpd` di Ubuntu 22.04 serta cara mengaksesnya dari host Windows 10.
-
----
 
 ## Prasyarat
 - Mesin Virtual (VM) Ubuntu 22.04 yang sudah berjalan.
 - Pengetahuan dasar tentang perintah di terminal Linux.
 - Pastikan pengaturan jaringan VM sudah dikonfigurasi dengan benar (misalnya, Bridged Adapter atau NAT).
 
----
+## Langkah-langkah
 
-## Langkah 1: Perbarui Paket Sistem
-Buka terminal di VM Ubuntu Anda dan jalankan:
+### 1. Perbarui Daftar Paket
+
 ```bash
 sudo apt update
 ```
+
 **[Gambar Step 1 di sini]**
 
----
+### 2. Instal Paket `vsftpd`
 
-## Langkah 2: Instal `vsftpd`
-Pasang paket `vsftpd` menggunakan:
 ```bash
-sudo apt install -y vsftpd
+sudo apt install vsftpd
 ```
 **[Gambar Step 2 di sini]**
+### 3. Verifikasi Instalasi
 
----
+Periksa apakah `vsftpd` telah terinstal dan berjalan.
 
-## Langkah 3: Cadangkan Konfigurasi Default
-Buat salinan cadangan dari file konfigurasi `vsftpd.conf`:
 ```bash
-sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
+vsftpd -version
+sudo systemctl status vsftpd
 ```
 **[Gambar Step 3 di sini]**
 
----
+### 4. Konfigurasi `vsftpd.conf`
 
-## Langkah 4: Buat Pengguna FTP Baru
-Buat pengguna khusus untuk akses FTP:
-```bash
-sudo adduser --home /home/ftpuser --shell /usr/sbin/nologin ftpuser
-```
-- Ganti `ftpuser` dengan nama pengguna yang Anda inginkan.
-- Anda akan diminta untuk memasukkan kata sandi dan informasi pengguna.
+Edit file konfigurasi `vsftpd`.
 
-Atur izin yang benar untuk direktori home pengguna:
-```bash
-sudo chmod 755 /home/ftpuser
-```
-**[Gambar Step 4 di sini]**
-
----
-
-## Langkah 5: Konfigurasi `vsftpd`
-Edit file konfigurasi `vsftpd`:
 ```bash
 sudo nano /etc/vsftpd.conf
 ```
-**[Gambar Step 5 di sini]**
+**[Gambar Step 4 di sini]**
+Di dalam file ini, atur konfigurasi berikut:
 
-### Buat perubahan berikut:
-1. Pastikan baris berikut diatur:
-   ```
-   listen=YES
-   anonymous_enable=NO
-   local_enable=YES
-   write_enable=YES
-   local_umask=022
-   dirmessage_enable=YES
-   use_localtime=YES
-   xferlog_enable=YES
-   connect_from_port_20=YES
-   chroot_local_user=YES
-   allow_writeable_chroot=YES
-   ```
+- Pastikan akses anonim dinonaktifkan dan akses pengguna lokal diaktifkan:
 
-2. Tambahkan baris ini untuk membatasi akses FTP hanya untuk pengguna tertentu:
-   ```
-   userlist_enable=YES
-   userlist_file=/etc/vsftpd.userlist
-   userlist_deny=NO
-   ```
+    ```conf
+    anonymous_enable=NO
+    local_enable=YES
+    ```
 
-Simpan dan tutup file:
-- Tekan `CTRL + X`, kemudian `Y`, dan `Enter`.
+- Aktifkan izin menulis untuk pengguna:
 
-**[Gambar Konfigurasi File di sini]**
+    ```conf
+    write_enable=YES
+    ```
 
----
+- Batasi pengguna hanya pada direktori home mereka:
 
-## Langkah 6: Batasi Akses ke Pengguna FTP
-Buat file `vsftpd.userlist` dan tambahkan pengguna FTP:
-```bash
-echo "ftpuser" | sudo tee -a /etc/vsftpd.userlist
+    ```conf
+    chroot_local_user=YES
+    ```
+
+- Tambahkan dua baris berikut di akhir file untuk mengatur folder FTP di direktori home pengguna:
+
+    ```conf
+    user_sub_token=$USER
+    local_root=/home/$USER/ftp
+    ```
+
+### 5. Batasi Akses ke Pengguna Tertentu
+
+Untuk mengizinkan hanya pengguna tertentu yang mengakses server FTP, tambahkan konfigurasi berikut dibawah file conf:
+
+```conf
+userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=NO
 ```
-- Ganti `ftpuser` dengan nama pengguna yang Anda buat.
+**[Gambar Step 5 di sini]**
+```conf
+“echo nama_user | sudo tee -a /etc/vsftpd.user_list”
+```
+Tambahkan nama pengguna yang diizinkan ke file `/etc/vsftpd.user_list`.
 
-**[Gambar Step 6 di sini]**
+### 6. Simpan dan Keluar
 
----
+Untuk menyimpan dan keluar, tekan `CTRL + X`, kemudian tekan `Y`, dan akhirnya `Enter`.
 
-## Langkah 7: Mulai Ulang Layanan `vsftpd`
-Mulai ulang layanan FTP untuk menerapkan perubahan:
+### 7. Restart Layanan `vsftpd`
+
 ```bash
 sudo systemctl restart vsftpd
 ```
 
-Aktifkan `vsftpd` agar mulai saat boot:
-```bash
-sudo systemctl enable vsftpd
-```
-**[Gambar Step 7 di sini]**
+### 8. Konfigurasi Firewall
 
----
+Izinkan lalu lintas FTP pada port 20 dan 21:
 
-## Langkah 8: Konfigurasi Firewall
-Izinkan lalu lintas FTP melalui firewall:
 ```bash
-sudo ufw allow 21
+sudo ufw allow 20:21/tcp
 ```
 
-Jika firewall belum diaktifkan, Anda dapat mengaktifkannya dengan:
+Muat ulang aturan firewall dengan menonaktifkan dan mengaktifkan kembali `ufw`:
+
 ```bash
+sudo ufw disable
 sudo ufw enable
 ```
+
+Verifikasi status firewall:
+
+```bash
+sudo ufw status
+```
 **[Gambar Step 8 di sini]**
+### 9. Tambahkan Pengguna FTP
 
----
+Buat pengguna FTP baru (ganti `nama_user` dengan nama pengguna yang sebenarnya):
 
+```bash
+sudo adduser nama_user
+```
+
+Tambahkan pengguna ini ke file `/etc/vsftpd.user_list`:
+
+```bash
+echo nama_user | sudo tee -a /etc/vsftpd.user_list
+```
+**[Gambar Step 5 di sini]**
+### 10. Siapkan Direktori FTP dan Izin
+
+Buat struktur direktori FTP dan atur izin. Ganti `ftpuser` dengan nama pengguna yang telah Anda buat pada langkah sebelumnya.
+
+```bash
+sudo mkdir -p /home/ftpuser/ftp/upload
+sudo chmod 550 /home/ftpuser/ftp
+sudo chmod 750 /home/ftpuser/ftp/upload
+sudo chown -R ftpuser: /home/ftpuser/ftp
+```
+**[Gambar Step 5 di sini]**
+### 11. Uji Server FTP
+
+Buat file teks baru untuk mengonfirmasi pengaturan:
+
+```bash
+echo "nama saya..." | sudo tee /home/ftpuser/ftp/upload/nama.text
+```
+**[Gambar Step 5 di sini]**
 ## Mengakses FTP Server dari Windows 10
 
 ### Menggunakan File Explorer
@@ -159,4 +178,4 @@ sudo ufw enable
 
 ---
 
-Ikuti langkah-langkah ini untuk berhasil mengatur dan mengakses FTP Server di Ubuntu 22.04!
+Ikuti langkah-langkah ini untuk berhasil mengatur dan mengakses FTP Server di Ubuntu 22.04
