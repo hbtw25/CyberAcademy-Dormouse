@@ -72,7 +72,7 @@ Di dalam file ini, atur konfigurasi berikut:
 
 ![Step 5](./Assets/ftp%205.PNG)
 ![Step 5](./Assets/ftp%206.PNG)
-![Step 5](./Assets/ftp%207.PNG)
+
 
 Untuk mengizinkan hanya pengguna tertentu yang mengakses server FTP, tambahkan konfigurasi berikut dibawah file conf:
 
@@ -81,7 +81,7 @@ userlist_enable=YES
 userlist_file=/etc/vsftpd.user_list
 userlist_deny=NO
 ```
-**[Gambar Step 5 di sini]**
+![Step 5](./Assets/ftp%207.PNG)
 ```conf
 “echo nama_user | sudo tee -a /etc/vsftpd.user_list”
 ```
