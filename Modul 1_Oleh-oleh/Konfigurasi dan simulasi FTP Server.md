@@ -71,6 +71,8 @@ Di dalam file ini, atur konfigurasi berikut:
     ```
 
 ![Step 5](./Assets/ftp%205.PNG)
+![Step 5](./Assets/ftp%206.PNG)
+![Step 5](./Assets/ftp%207.PNG)
 
 Untuk mengizinkan hanya pengguna tertentu yang mengakses server FTP, tambahkan konfigurasi berikut dibawah file conf:
 
@@ -94,7 +96,7 @@ Untuk menyimpan dan keluar, tekan `CTRL + X`, kemudian tekan `Y`, dan akhirnya `
 ```bash
 sudo systemctl restart vsftpd
 ```
-![Step 7](./Assets/ftp%207.PNG)
+
 ### 8. Konfigurasi Firewall
 
 Izinkan lalu lintas FTP pada port 20 dan 21:
@@ -108,6 +110,10 @@ Muat ulang aturan firewall dengan menonaktifkan dan mengaktifkan kembali `ufw`:
 ```bash
 sudo ufw disable
 sudo ufw enable
+```
+atau
+```bash
+sudo ufw reload
 ```
 
 Verifikasi status firewall:
@@ -168,7 +174,7 @@ echo "nama saya..." | sudo tee /home/ftpuser/ftp/upload/nama.text
    - **Port**: `21`
 3. Klik **Quickconnect** untuk terhubung ke server FTP.
 
-![Step 12](./Assets/ftp%2011.PNG)
+![Step 12](./Assets/ftp%2012.PNG)
 
 ---
 
