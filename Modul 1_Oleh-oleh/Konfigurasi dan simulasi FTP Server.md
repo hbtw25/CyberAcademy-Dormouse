@@ -16,7 +16,7 @@ Panduan ini memberikan langkah-langkah detail untuk menginstal dan mengkonfigura
 sudo apt update
 ```
 
-**[Gambar Step 1 di sini]**
+(./Assets/ftp%201.PNG)
 
 ### 2. Instal Paket `vsftpd`
 
