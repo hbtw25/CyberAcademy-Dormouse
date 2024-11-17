@@ -5,6 +5,9 @@
 
 Panduan ini menjelaskan cara mengatur sistem kontrol palang otomatis berbasis IoT menggunakan ESP32. Sistem menggunakan sensor untuk mendeteksi kendaraan dan kondisi lingkungan, lalu mengontrol aktuator berdasarkan data sensor. Data dikirimkan ke aplikasi Blynk untuk pemantauan real-time.
 
+**Jika belum install alat-bahan yang dibutuhkan akses tutorialnya disini 
+https://telkomuniversityofficial-my.sharepoint.com/personal/raihanrtwn_student_telkomuniversity_ac_id/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fraihanrtwn%5Fstudent%5Ftelkomuniversity%5Fac%5Fid%2FDocuments%2FKebutuhan%20Modul%202%5FCyber%20Academy%202024**
+
 ---
 
 ## **Persiapan**
