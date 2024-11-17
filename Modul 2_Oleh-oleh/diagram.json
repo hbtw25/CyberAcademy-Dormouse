@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "author": "Kiên Khắc Nguyễn",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -48, "left": 148.84, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": 241.5,
+      "left": -119.3,
+      "attrs": { "distance": "30" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 38.7,
+      "left": -130.2,
+      "attrs": { "temperature": "32.7", "humidity": "53.5" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 218.8, "left": 220.8, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 34.8, "left": 407, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "resistor1",
+      "top": 186.35,
+      "left": 345.6,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:SDA", "esp:14", "green", [ "v0" ] ],
+    [ "dht1:VCC", "esp:5V", "red", [ "v86.4" ] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "v0", "h-86.4", "v-105.6" ] ],
+    [ "ultrasonic1:TRIG", "esp:33", "green", [ "v9.6", "h-106", "v-336", "h192", "v115.2" ] ],
+    [
+      "ultrasonic1:ECHO",
+      "esp:32",
+      "green",
+      [ "v19.2", "h-125.6", "v-355.2", "h211.2", "v115.2" ]
+    ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "servo1:V+", "esp:5V", "red", [ "h-144", "v0.1", "h-9.6" ] ],
+    [ "servo1:PWM", "esp:16", "green", [ "h-28.8", "v0.2" ] ],
+    [ "servo1:GND", "esp:GND.1", "black", [ "h-163.2", "v-9.6" ] ],
+    [ "ultrasonic1:GND", "esp:GND.1", "black", [ "v9.6", "h75.6", "v-163.2" ] ],
+    [ "led1:A", "resistor1:2", "red", [] ],
+    [ "resistor1:1", "esp:25", "green", [] ],
+    [ "led1:C", "esp:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}
