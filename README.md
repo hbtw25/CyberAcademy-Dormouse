@@ -3,10 +3,10 @@
 Selamat datang di repositori **Cyber Academy** kelompok **Dormouse**.  Di sini kami akan mengerjakan dan mendokumentasikan tugas-tugas yang diberikan.
 
 ## Anggota Kelompok
-1. Harsya Brahmantyo w - FTP dan PPT
-2. Firlana Dwi Putra - [Deskripsi Tugas atau Peran]
-3. Hanif Athalla Wiharso - SSH Server
-4. Putri Ayudhira A.S - Web Server dan PPT
+1. Harsya Brahmantyo w - 
+2. Firlana Dwi Putra - 
+3. Hanif Athalla Wiharso - 
+4. Putri Ayudhira A.S -
 
 ## Cara Berkontribusi
 1. Fork repositori ini.
