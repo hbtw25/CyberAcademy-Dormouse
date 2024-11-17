@@ -1,4 +1,4 @@
-
+**Bahan Gambar ada di folder asset [aset](https://github.com/hbtw25/CyberAcademy-Dormouse/tree/main/Modul%202_Oleh-oleh/asset)**
 ---
 
 ### **Slide 1: Judul Proyek**
