@@ -192,3 +192,74 @@ Gambar: Screenshot pengujian menggunakan **POSTMAN** untuk endpoint API seperti 
 
 ---
 
+
+### ** tambahan **
+
+
+
+---
+
+### **Slide : Fitur Backend - API - CRUD Operations**
+
+**Fitur Backend - API - CRUD Operations**
+- **Create Group (POST)**: Menambahkan grup baru.
+- **Update Group (PUT)**: Memperbarui grup berdasarkan nama grup.
+- **Delete Group (DELETE)**: Menghapus grup berdasarkan nama grup.
+
+---
+
+#### **Create Group - POST**
+```javascript
+// Create a new group
+app.post("/groups", (req, res) => {
+  const { group_name, student1, student2, student3, student4 } = req.body;
+
+  const newGroup = { group_name, student1, student2, student3, student4 };
+  groups.push(newGroup);
+
+  res.status(201).json(newGroup);
+});
+```
+
+#### **Update Group - PUT**
+```javascript
+// Update a group by name
+app.put("/groups/:group_name", (req, res) => {
+  const groupName = req.params.group_name;
+  const { group_name, student1, student2, student3, student4 } = req.body;
+
+  const group = groups.find((g) => g.group_name === groupName);
+  if (!group) return res.status(404).json({ error: "Group not found" });
+
+  if (group_name) group.group_name = group_name;
+  if (student1) group.student1 = student1;
+  if (student2) group.student2 = student2;
+  if (student3) group.student3 = student3;
+  if (student4) group.student4 = student4;
+
+  res.json(group);
+});
+```
+
+#### **Delete Group - DELETE**
+```javascript
+// Delete a group by name
+app.delete("/groups/:group_name", (req, res) => {
+  const groupName = req.params.group_name;
+  const groupIndex = groups.findIndex((g) => g.group_name === groupName);
+
+  if (groupIndex === -1) {
+    return res.status(404).json({ error: "Group not found" });
+  }
+
+  groups.splice(groupIndex, 1);
+
+  res.status(200).json({
+    message: `The Group "${groupName}" has been deleted successfully.`,
+  });
+});
+```
+
+---
+
+\
