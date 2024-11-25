@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Showcase & Group Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">My App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="#product-showcase">Product Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#group-management">Group Management</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <!-- Section: Product Showcase -->
+    <section id="product-showcase" class="my-5">
+      <h1 class="text-center mb-4">Product Showcase</h1>
+      <div id="product-list" class="row g-4">
+        <!-- Produk akan dimuat di sini -->
+      </div>
+    </section>
+    
+    <hr class="my-5">
+
+    <!-- Section: Group Management -->
+    <section id="group-management">
+      <h1 class="text-center mb-4">Group Management System</h1>
+      
+      <!-- Create Group Section -->
+      <div id="group-section" class="mb-4">
+        <h2>Create Group</h2>
+        <form id="create-group-form" class="d-flex gap-2">
+          <input type="text" id="group-name" class="form-control" placeholder="Group Name" required />
+          <button type="submit" class="btn btn-primary">Create Group</button>
+        </form>
+      </div>
+  
+      <!-- Groups List Section -->
+      <div id="groups-list-section">
+        <h2>Groups</h2>
+        <ul id="groups-list" class="list-group"></ul>
+      </div>
+  
+      <!-- Edit Students Section -->
+      <div id="edit-students-section" class="hidden">
+        <h2>Edit Students in <span id="current-group" class="text-primary"></span></h2>
+        <ul id="students-list" class="list-group mb-3"></ul>
+        <button id="back-to-groups" class="btn btn-secondary">Back to Groups</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
