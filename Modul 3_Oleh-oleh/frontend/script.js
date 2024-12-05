@@ -7,7 +7,7 @@ const loadProducts = async () => {
   try {
     const response = await fetch(API_URL_PRODUCTS);
     const data = await response.json();
-    const products = data.products.slice(0, 10); // Batasi 10 produk
+    const products = data.products.slice(0, 8); // Batasi 10 produk
 
     productList.innerHTML = products
       .map(
